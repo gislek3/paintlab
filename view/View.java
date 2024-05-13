@@ -50,12 +50,14 @@ public class View extends JPanel {
     drawCells(g2, this.model.getBoard(), converter); 
   }
 
-  private static void drawCells(Graphics2D g2, Iterable<GridCell<Color>> cells, CellPositionToPixelConverter converter) {
+  private void drawCells(Graphics2D g2, Iterable<GridCell<Color>> cells, CellPositionToPixelConverter converter) {
     for (GridCell<Color> cell : cells) {
       Rectangle2D box = converter.getBoundsForCell(cell.pos());
-      //Color color = colors.getCellColor(cell.value());
+
+      Color color = (cell.value() == null) ? Color.DARK_GRAY : cell.value();
       g2.setColor(color);
       g2.fill(box);
     }
   }
+
 }
